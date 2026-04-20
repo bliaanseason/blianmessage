@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haloo Mass ini untuk kamuu!!</title>
+   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #ffdeeb;
+            --accent-pink: #ff85a2;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--soft-pink);
+            background-image: radial-gradient(#ffb6c1 10%, transparent 10%);
+            background-size: 30px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Halaman Password */
+        #password-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .password-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: bounceIn 1s forwards;
+        }
+
+        .password-content h2 {
+            color: var(--primary-pink);
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 2px solid var(--soft-pink);
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+        }
+
+        .enter-btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.05);
+            background: #e63958;
+        }
+
+        /* Halaman Utama */
+        #main-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            animation: fadeIn 1s;
+        }
+
+        .welcome-text {
+            color: var(--primary-pink);
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #d63384;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .nav-btn.active {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 85%;
+            min-height: 300px;
+        }
+
+        .content-section { display: none; }
+        .content-section.active { display: block; animation: slideUp 0.5s; }
+
+        .reminder-box, .song-box {
+            background: #fff8f9;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 6px solid var(--accent-pink);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .letter-text { line-height: 1.7; color: #444; white-space: pre-line; text-align: left; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 10px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="password-page">
+        <h1 style="color: rgb(153, 27, 102); font-weight: 300;">Haloo ini untuk kamu mas</h1>
+        <div class="password-content">
+            <h2>Enter the secret code</h2>
+            <input type="password" id="passwordInput" placeholder="Hint: about..." autocomplete="off">
+            <br>
+            <button class="enter-btn" onclick="checkPassword()">Enter</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <h1 style="color: rgb(218, 48, 155); font-weight: 300;">Haloo ini untuk kamu mass</h1>
+        <p class="welcome-text">Welcome my love, enjoy your stay</p>
+
+        <div class="navbar">
+            <button class="nav-btn active" onclick="showTab('letter')">❤️ Love Letter</button>
+            <button class="nav-btn" onclick="showTab('music')">🎵 Music</button>
+            <button class="nav-btn" onclick="showTab('notes')">📝 Notes</button>
+            <button class="nav-btn" onclick="showTab('gallery')">🖼️ Gallery</button>
+        </div>
+
+        <div class="card">
+            <div id="letter" class="content-section active">
+                <h3 style="color: var(--primary-pink)">My Dearest</h3>
+                <p class="letter-text">
+                   Mas,
+
+Aku tuh sebenernya ga jago ngomong romantis, tapi I just wanna say… Im really glad I have you. Sesimpel itu.
+
+Makasi ya udah selalu ada, even pas aku lagi random, nyebelin, atau overthinking ga jelas. Kamu tuh somehow selalu bikin semuanya feel better, tanpa harus ngapa-ngapain yang ribet.
+
+Aku suka cara kamu yang biasa aja tapi ga pernah ga bikin aku jingkrak". No drama, no fake stuff, just you—and thats enough for me.
+
+Semoga kita bisa terus bareng ya, pelan-pelan aja, no rush. Im not asking for perfect, aku cuma mau “kita” tetap ada.
+
+Take care ya Mas, jangan lupa istirahat.
+I miss you, and… I like you more than I say 🤍
+                </p>
+            </div>
+
+            <div id="music" class="content-section">
+                <h3 style="color: var(--primary-pink)">Songs that remind me of you</h3>
+                <div class="song-box">🎵 <div><b>i love you 3000</b><br><small>by Stephanie Poetri</small></div></div>
+                <div class="song-box">🎵 <div><b>I Hope</b><br><small>by Jaymes Young</small></div></div>
+                <div class="song-box">🎵 <div><b>Always With U</b><br><small>Your Playlist</small></div></div>
+                <div class="song-box">🎵 <div><b>For</b><br><small>Your Playlist</small></div></div>
+                <div class="song-box">🎵 <div><b>a long</b><br><small>Your Playlist</small></div></div>
+                <div class="song-box">🎵 <div><b>Time</b><br><small>Your Playlist</small></div></div>
+                
+                <audio id="bgMusic" loop>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                </audio>
+                <p style="font-size: 0.7rem; text-align: center; color: gray; margin-top: 15px;">(Music is playing now 🎵)</p>
+            </div>
+
+            <div id="notes" class="content-section">
+                <h3 style="color: var(--primary-pink)">Some reminders</h3>
+                <div class="reminder-box">✨ Selalu Hati-Hati sayang</div>
+                <div class="reminder-box">Makan tepat waktu, selalu aku ingatin.</div>
+                <div class="reminder-box"> Jangan Begadang</div>
+                <div class="reminder-box">Selalu kabarin adek....</div>
+                <div class="reminder-box">💖 You're mine.. always</div>
+            </div>
+
+            <div id="gallery" class="content-section">
+                <h3 style="color: var(--primary-pink)">Flowers for you</h3>
+                <div class="gallery-grid">
+                <p class="letter text";>
+                    HEHEHEHE BUNGANYA AKU KAMU LIAT AKU AJAA!
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const pass = document.getElementById('passwordInput').value;
+            
+            // Password diubah menjadi "aboutu"
+            if (pass.toLowerCase() === "aboutu") {
+                document.getElementById('password-page').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+                
+                // Memutar musik
+                const audio = document.getElementById('bgMusic');
+                audio.play().catch(error => {
+                    console.log("Autoplay dicegah browser, musik akan jalan setelah interaksi.");
+                });
+            } else {
+                alert("Kodenya salah sayang, coba lagi ya! ❤️");
+            }
+        }
+
+        // Fungsi agar bisa tekan "Enter" di keyboard untuk login
+        document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+        function showTab(tabId) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            // Tampilkan yang dipilih
+            document.getElementById(tabId).classList.add('active');
+            
+            // Atur tombol aktif
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
